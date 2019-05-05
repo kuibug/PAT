@@ -1,4 +1,4 @@
-package javase.week09;
+package dataStructures.week09;
 
 import java.util.Scanner;
 
