@@ -7,21 +7,21 @@ public class AgeSortV2 {
 
 		int[] age = new int[51];
 
-		// Scanner sc = new Scanner(System.in);
-		// int size = sc.nextInt();
-		// long start = System.currentTimeMillis();
-		// for (int i = 0; i < size; i++) {
-		// int data = sc.nextInt();
-		// age[data]++;
-		// }
-
-		int[] arr = zeroArray();
+		Scanner sc = new Scanner(System.in);
+		int size = sc.nextInt();
 		long start = System.currentTimeMillis();
-
-		for (int i = 0; i < 100000; i++) {
-			int tem = arr[i];
-			age[tem]++;
+		for (int i = 0; i < size; i++) {
+			int data = sc.nextInt();
+			age[data]++;
 		}
+
+//		int[] arr = zeroArray();
+//		long start = System.currentTimeMillis();
+//
+//		for (int i = 0; i < 100000; i++) {
+//			int tem = arr[i];
+//			age[tem]++;
+//		}
 
 		// System.out.println(Arrays.toString(age));
 
@@ -32,8 +32,8 @@ public class AgeSortV2 {
 				count += age[i];
 			}
 		}
-		 long end = System.currentTimeMillis();
-		 System.out.println(end - start + "ms");
+		long end = System.currentTimeMillis();
+		System.out.println(end - start + "ms");
 	}
 
 	static int[] random() {
