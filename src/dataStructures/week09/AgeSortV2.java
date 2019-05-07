@@ -34,6 +34,7 @@ public class AgeSortV2 {
 		}
 		long end = System.currentTimeMillis();
 		System.out.println(end - start + "ms");
+		sc.close();
 	}
 
 	static int[] random() {
