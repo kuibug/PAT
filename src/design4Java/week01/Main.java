@@ -6,20 +6,18 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Scanner in = new Scanner(System.in);
-		Fraction a = new Fraction(in.nextInt(), in.nextInt());
-		Fraction b = new Fraction(in.nextInt(), in.nextInt());
+		Object[] obj1 = {"a","dsad"};
+		Object[] obj2 = {1,3,5};
+		
+		print(obj1);
+		print(obj2);
+	}
 
-		a.print();
-		b.print();
-
-		a.plus(b).print();
-		a.multiply(b).plus(new Fraction(5, 6)).print();
-
-		a.print();
-		b.print();
-
-		in.close();
+	private static void print(Object[] obj1) {
+		for (Object object : obj1) {
+			System.out.print(object+"\t");
+		}
+		System.out.println();
 	}
 
 }

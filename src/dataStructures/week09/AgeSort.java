@@ -53,10 +53,10 @@ public class AgeSort {
 		return new int[100000];
 	}
 
-	static int[] random() {
-		int[] arr = new int[100000];
-		for (int i = 0; i < 100000; i++) {
-			arr[i] = (int) (Math.random() * 50);
+	static int[] random(int size) {
+		int[] arr = new int[size];
+		for (int i = 0; i < size; i++) {
+			arr[i] = (int) (Math.random() * size);
 		}
 		return arr;
 	}

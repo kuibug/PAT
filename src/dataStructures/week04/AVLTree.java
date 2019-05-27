@@ -21,7 +21,7 @@ public class AVLTree {
 			int data = sc.nextInt();
 			tree.node = tree.insert(tree.node, data);
 		}
-		System.out.println(tree.node.data);
+		System.out.println(tree);
 		sc.close();
 	}
 
