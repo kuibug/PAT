@@ -1,8 +1,6 @@
 package selfTest;
 
 import java.io.IOException;
-import java.util.Arrays;
-
 import utils.Reader;
 
 /***
@@ -16,69 +14,112 @@ import utils.Reader;
  * 输出格式: 首先打印出由给定符号组成的最大的沙漏形状，最后在一行中输出剩下没用掉的符号数。
  *
  * 规律： 1 1+3*2 1+3*2+5*2 1+3*2+5*2+7*2
- * 
- * 思路一：使用循环判断该数是否小于于目前标志点，不小于往前走，
+ *
+ * 思路：
+ * 1.先算出第一行有多少符号
+ * 2.计算出剩余数量
+ * 3.分上下绘制两个倒三角
  */
 public class Hourglass {
 
-	public static void main(String[] args) throws IOException {
-//    	
-//        int sum = 1;
-//        for (int i = 3; i < 46; i++) {
-//            if (i % 2 != 0) {
-//                sum += i * 2;
-//                System.out.println(sum);
-//            }
-//
-//        }
-		// 先接收数字和符号
-		Reader.init(System.in);
-		int N = Reader.nextInt();
-		String symbol = Reader.next();
+    public static void main(String[] args) throws IOException {
+        // 先接收数字和符号
+        Reader.init(System.in);
+        int N = Reader.nextInt();
+        String symbol = Reader.next();
 
-		// 判断应该画多少行
-		int[] line = calLine(N);
-		System.out.println("out:line" + Arrays.toString(line));
+        // 求出第一行应该有几个符号
+        int[] line = maxLine(N);
 
-		// 打印图形
-		printHourglass(line[0], symbol);
+        // 打印图形
+        printHourglass(line[1], symbol);
 
-	}
+        //输出最后剩余的数量
+        System.out.println(line[0]);
+    }
 
-	private static void printHourglass(int line, String symbol) {
+    /**
+     * 打印沙漏
+     *
+     * @param max    最大行符号数量
+     * @param symbol 打印符号
+     */
+    private static void printHourglass(int max, String symbol) {
+        int space = 0;//前面的空格数量
+        int num = max;//符号数量
 
-		// 先打印上沙漏
-		for (int i = line; i > 0; i--) {
-			int length = line;
-		}
+        // 先打印上沙漏
+        while (num >= 1) {
+            //绘制
+            print(space, num, symbol);
 
-		// 再打印下沙漏
-		int len = 3;
-		for (int i = 1; i < line; i++) {
-			for (int j = len; j > 0; j--) {
-				System.out.print(symbol);
-				len += 2;
-			}
-			System.out.println();
-		}
-	}
+            //更新上面的数量
+            num -= 2;
+            space++;
+        }
 
-	private static int[] calLine(int n) {
-		int line = 0;
+        //手动刷新一下
+        num += 2;
+        space--;
 
-		// 特殊处理第一行
-		if (n > 0) {
-			n--;
-			line++;
-		}
+        // 再打印下沙漏
+        while (space > 0) {
+            //更新数量
+            num += 2;
+            space--;
 
-		// 使用递减的思维，直到减完未知
-		int i = 3;
-		while (n > i * 2) {
-			n -= i * 2;
-			line++;
-			i += 2;
-		}
-		return new int[] { line, n };
-	}
+            //绘制
+            print(space, num, symbol);
+        }
+
+    }
+
+    /**
+     * 上下沙漏打印复用
+     *
+     * @param space  空格数量
+     * @param num    符号数量
+     * @param symbol 符号
+     */
+    private static void print(int space, int num, String symbol) {
+        //打印空格
+        int tmp = space;
+        while (tmp > 0) {
+            System.out.print(" ");
+            tmp--;
+        }
+        //打印符号
+        tmp = num;
+        while (tmp > 0) {
+            System.out.print(symbol);
+            tmp--;
+        }
+        //换行
+        System.out.println();
+    }
+
+    /**
+     * 计算最大行的数量
+     *
+     * @param n 输入值
+     * @return {单行最大数量, 剩余数量}
+     */
+    private static int[] maxLine(int n) {
+        int max = 0;
+
+        // 特殊处理第一行
+        if (n > 0) {
+            n--;
+            max++;
+        }
+
+        // 使用递减的思维，直到减完未知
+        int i = 3;
+        while (n > i * 2) {
+            n -= i * 2;
+            max = i;
+            i += 2;
+        }
+        return new int[]{n, max};
+    }
 }
