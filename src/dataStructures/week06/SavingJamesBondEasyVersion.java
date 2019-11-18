@@ -72,6 +72,7 @@ public class SavingJamesBondEasyVersion {
 	 * @param cayman2
 	 * @return line 两点的距离（int）
 	 */
+	@SuppressWarnings("unused")
 	private static int calLine(Cayman cayman1, Cayman cayman2) {
 		int x = cayman1.X - cayman2.X;
 		int y = cayman1.Y - cayman2.Y;
