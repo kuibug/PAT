@@ -1,8 +1,6 @@
 package selfTest;
 
-import java.io.IOException;
-import utils.Reader;
-
+import java.util.Scanner;
 /***
  * 题目： 把给定的符号打印成沙漏的形状
  * 所谓“沙漏形状”，是指每行输出奇数个符号；各行符号中心对齐；相邻两行符号数差2；符号数先从大到小顺序递减到1，再从小到大顺序递增；首尾符号数相等。
@@ -22,11 +20,12 @@ import utils.Reader;
  */
 public class Hourglass {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // 先接收数字和符号
-        Reader.init(System.in);
-        int N = Reader.nextInt();
-        String symbol = Reader.next();
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        String symbol = sc.next();
+        sc.close();
 
         // 求出第一行应该有几个符号
         int[] line = maxLine(N);
@@ -123,3 +122,12 @@ public class Hourglass {
         return new int[]{n, max};
     }
 }
+/*
+算法复杂度分析：
+    时间复杂度：O(n)
+        maxLine(): O(n^1/2)
+        printHourglass():O(n^1/2)*O(n^1/2) = O(n)
+    空间复杂度：O(1)
+算法总结：实实在在的规律题，按照规律编写即可
+    注意寻找最方便打印的规律
+ */
