@@ -3,7 +3,6 @@ package selfTest;
 import utils.Reader;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * 一个数组A中存有N（>0）个整数，在不允许使用另外数组的前提下，将每个整数循环向右移M（≥0）个位置，（最后M个数循环移至最前面的M个位置）。
@@ -26,6 +25,7 @@ public class ArrayRightShift {
 
         int N = Reader.nextInt();//数组大小
         int M = Reader.nextInt();//右移大小
+        M = M % N;//这里防止M比N大后面GG
 
         //存取数组
         int[] arr = new int[N];
@@ -33,26 +33,34 @@ public class ArrayRightShift {
             arr[i] = Reader.nextInt();
         }
 
-        //交换
+        //逆序前M个
         exchange(arr, 0, N - M - 1);
+        //逆序后半部分
         exchange(arr, N - M, N - 1);
+        //整体逆序
         exchange(arr, 0, N - 1);
 
-        System.out.println(Arrays.toString(arr));
+        //输出结果
+        for (int i = 0; i < N; i++) {
+            if (i == 0)
+                System.out.print(arr[i]);
+            else
+                System.out.print(" " + arr[i]);
+        }
     }
 
     private static void exchange(int[] arr, int start, int end) {
         int half = (end - start + 1) / 2;
         for (int i = 0; i < half; i++) {
-            int tmp = arr[i];
-            arr[i] = arr[end - i];
+            int tmp = arr[start + i];
+            arr[start + i] = arr[end - i];
             arr[end - i] = tmp;
         }
     }
 }
 /*
 算法分析：
-    最简单粗暴，保存末尾值，循环M次依次右归。时间复杂度O(M^2)……
-
+    最简单粗暴:保存末尾值，循环M次依次右归。时间复杂度O(n^2)……
+    优化：分段逆序，前后分别逆序，再整体逆序正好是我们想要的结果，时间复杂度O(n)
 
  */
