@@ -1,6 +1,6 @@
 package selfTest;
 
-import utils.Reader;
+import utils.IOUtil;
 
 import java.io.IOException;
 
@@ -21,16 +21,16 @@ import java.io.IOException;
 public class ArrayRightShift {
     public static void main(String[] args) throws IOException {
         //接收参数
-        Reader.init(System.in);
+        IOUtil.init(System.in,System.out);
 
-        int N = Reader.nextInt();//数组大小
-        int M = Reader.nextInt();//右移大小
+        int N = IOUtil.nextInt();//数组大小
+        int M = IOUtil.nextInt();//右移大小
         M = M % N;//这里防止M比N大后面GG
 
         //存取数组
         int[] arr = new int[N];
         for (int i = 0; i < N; i++) {
-            arr[i] = Reader.nextInt();
+            arr[i] = IOUtil.nextInt();
         }
 
         //逆序前M个

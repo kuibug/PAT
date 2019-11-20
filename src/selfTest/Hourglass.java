@@ -24,7 +24,7 @@ public class Hourglass {
         // 先接收数字和符号
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
-        String symbol = sc.next();
+        String symbol = sc.nextLine();
         sc.close();
 
         // 求出第一行应该有几个符号
